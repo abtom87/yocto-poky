@@ -1,0 +1,35 @@
+
+
+sudo docker image build --no-cache .
+
+
+
+
+sudo docker run -i -t
+
+
+sudo docker system prune -a
+
+sudo docker run -t -i -v .:"/yocto-ws" ffe7f2b3dcd5
+
+
+
+
+
+
+
+
+
+
+PARALLEL_MAKE = "-j 6"
+BB_NUMBER_THREADS = "9"
+
+
+
+
+docker build --no-cache -t yocto-docker .
+
+docker run -t -i -v .:"/yocto-ws" -v /media/yocto-partition/:/mnt/yocto-partition  yocto-docker:latest
+
+
+

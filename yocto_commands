@@ -1,0 +1,22 @@
+
+devtool modify -x m4-native devtool_test/
+
+
+
+PARALLEL_MAKE = "-j 6"
+BB_NUMBER_THREADS = "9"
+
+
+
+# Create custom recipe
+recipetool create git@github.com:abtom87/test-cpp-yocto.git -B main -N test-cpp-app
+
+
+# Run qemu image
+runqemu qemux86-64 tmp/deploy/images/qemux86-64/core-image-weston-qemux86-64.rootfs.qemuboot.conf  core-image-weston ext4 slirp nographic
+
+runqemu tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootfs.qemuboot.conf tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootfs.ext4 slirp nographic
+
+runqemu tmp/deploy/images/qemux86-64/core-image-weston-qemux86-64.rootfs.qemuboot.conf core-image-weston-qemux86-64.rootfs.ext4 slirp nographic
+
+
