@@ -1,0 +1,3 @@
+[submodule "meta-qt5"]
+	path = meta-qt5
+	url = ./meta-qt5/
