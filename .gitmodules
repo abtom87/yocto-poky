@@ -1,3 +1,6 @@
 [submodule "meta-qt5"]
 	path = meta-qt5
-	url = ./meta-qt5/
+	url = git@github.com:abtom87/meta-qt5.git
+[submodule "meta-openembedded"]
+	path = meta-openembedded
+	url = git@github.com:abtom87/meta-openembedded.git
