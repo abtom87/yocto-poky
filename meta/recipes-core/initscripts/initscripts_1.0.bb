@@ -149,7 +149,7 @@ do_install () {
 	update-rc.d -r ${D} populate-volatile.sh start 37 S .
 	update-rc.d -r ${D} read-only-rootfs-hook.sh start 29 S .
 	update-rc.d -r ${D} devpts.sh start 06 S .
-	update-rc.d -r ${D} start-wifi.sh start 99 2 3 4 5 .
+	#update-rc.d -r ${D} start-wifi.sh start 99 2 3 4 5 .
 	if [ "${TARGET_ARCH}" = "arm" ]; then
 	        update-rc.d -r ${D} alignment.sh start 06 S .
 	fi
