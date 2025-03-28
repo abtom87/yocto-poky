@@ -196,3 +196,5 @@ ALTERNATIVE:${PN}-scp = "scp"
 ALTERNATIVE:${PN}-ssh = "ssh"
 
 BBCLASSEXTEND += "nativesdk"
+
+SYSTEMD_AUTO_ENABLE:${PN} = "enable"

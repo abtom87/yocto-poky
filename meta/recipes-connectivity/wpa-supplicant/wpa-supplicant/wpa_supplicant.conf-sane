@@ -5,3 +5,8 @@ update_config=1
 network={
         key_mgmt=NONE
 }
+
+network={
+        ssid="FRITZ!Box 7530 LS"
+        psk="Chedyecha12August2014$$"
+}

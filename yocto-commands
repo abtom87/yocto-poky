@@ -1,0 +1,20 @@
+devtool modify -x m4-native devtool_test/
+
+PARALLEL_MAKE = "-j 6"
+BB_NUMBER_THREADS = "9"
+
+# Create custom recipe
+recipetool create git@github.com:abtom87/test-cpp-yocto.git -B main -N test-cpp-app
+
+
+# Run qemu image
+runqemu qemux86-64 tmp/deploy/images/qemux86-64/core-image-weston-qemux86-64.rootfs.qemuboot.conf  core-image-weston ext4 slirp nographic
+
+runqemu tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootfs.qemuboot.conf tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.rootfs.ext4 slirp nographic
+
+runqemu tmp/deploy/images/qemux86-64/core-image-weston-qemux86-64.rootfs.qemuboot.conf core-image-weston-qemux86-64.rootfs.ext4 slirp nographic
+
+qemu-system-x86_64 -enable-kvm -m 2048     -kernel build/tmp/deploy/images/qemux86-64/bzImage     -drive file=build/tmp/deploy/images/qemux86-64/core-image-weston-qemux86-64.rootfs.ext4,format=raw -append "root=/dev/sda rw "
+
+BRANCH="bugfix/replace-raw-pointers"
+SRC_URI = "git://git@github.com/abtom87/SpaceInvaders_Qt_Cpp.git;protocol=ssh;branch=${BRANCH}"

@@ -32,6 +32,7 @@ SRC_URI = "file://functions \
            file://volatiles \
            file://save-rtc.sh \
            file://dmesg.sh \
+           file://start-wifi.sh \
            file://logrotate-dmesg.conf \
            ${@bb.utils.contains('DISTRO_FEATURES','selinux','file://sushell','',d)} \
 "
@@ -86,6 +87,7 @@ do_install () {
 	install -d ${D}${localstatedir}/lib/urandom
 
 	install -m 0644    ${WORKDIR}/functions		${D}${sysconfdir}/init.d
+	install -m 0755    ${WORKDIR}/start-wifi.sh	${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/bootmisc.sh	${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/checkroot.sh	${D}${sysconfdir}/init.d
 	install -m 0755    ${WORKDIR}/halt		${D}${sysconfdir}/init.d
@@ -147,6 +149,7 @@ do_install () {
 	update-rc.d -r ${D} populate-volatile.sh start 37 S .
 	update-rc.d -r ${D} read-only-rootfs-hook.sh start 29 S .
 	update-rc.d -r ${D} devpts.sh start 06 S .
+	update-rc.d -r ${D} start-wifi.sh start 99 2 3 4 5 .
 	if [ "${TARGET_ARCH}" = "arm" ]; then
 	        update-rc.d -r ${D} alignment.sh start 06 S .
 	fi
@@ -169,6 +172,7 @@ MASKED_SCRIPTS = " \
   read-only-rootfs-hook \
   rmnologin \
   sysfs \
+  start-wifi \
   urandom"
 
 pkg_postinst:${PN} () {
